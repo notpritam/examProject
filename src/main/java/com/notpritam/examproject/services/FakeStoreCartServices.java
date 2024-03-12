@@ -2,14 +2,12 @@ package com.notpritam.examproject.services;
 
 import com.notpritam.examproject.dtos.CartDTOs;
 import com.notpritam.examproject.models.Cart;
-import com.notpritam.examproject.models.CartProduct;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class FakeStoreCartServices implements  CartServices {
     private final String url = "https://fakestoreapi.com/carts";
