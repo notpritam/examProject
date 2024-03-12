@@ -7,6 +7,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -98,6 +99,8 @@ public class FakeStoreCartServices implements  CartServices {
 
            CartDTOs sendCart = mapToCardDTOs(cart);
            sendCart = restTemplate.postForObject(url, sendCart, CartDTOs.class);
+
+           System.out.println(Arrays.stream(sendCart.getProducts()).toList());
 
            return mapToCart(sendCart);
 
