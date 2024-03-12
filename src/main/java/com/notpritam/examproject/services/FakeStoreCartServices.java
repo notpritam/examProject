@@ -96,7 +96,17 @@ public class FakeStoreCartServices implements  CartServices {
    @Override
     public Cart addNewCartProduct(Cart cart) {
 
-        return null;
+           CartDTOs sendCart = mapToCardDTOs(cart);
+           sendCart = restTemplate.postForObject(url, sendCart, CartDTOs.class);
+
+           return mapToCart(sendCart);
+
+    }
+
+    private CartDTOs mapToCardDTOs(Cart cart) {
+
+        return new CartDTOs(cart.getCartId(), cart.getUserId(), cart.getDate(), cart.getCartProducts());
+
     }
 
     @Override
