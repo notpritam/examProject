@@ -130,14 +130,17 @@ public class FakeStoreCartServices implements  CartServices {
     }
 
     @Override
-    public List<Cart> updateAProduct(Long productId) {
+    public Cart updateAProduct(Long productId) {
         return null;
     }
 
     @Override
-    public List<Cart> deleteCart(Long cartId) {
-        return null;
+    public Cart deleteCart(Long cartId) {
+       restTemplate.delete(url + "/" + cartId, CartDTOs.class);
+      return null;
     }
+
+
 
     @Override
     public List<Cart> getSortedProducts(String sort) {

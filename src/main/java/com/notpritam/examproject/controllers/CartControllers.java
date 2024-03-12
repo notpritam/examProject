@@ -60,4 +60,17 @@ public class CartControllers {
         return fakeStoreCartServices.addNewCartProduct(cart);
     }
 
+    // Update a Product in Cart
+    @PutMapping("/{id}")
+    public Cart updateCart(@PathVariable Long id) {
+        return fakeStoreCartServices.updateAProduct(id);
+    }
+
+    // Delete a Product from Cart
+    @DeleteMapping("/{id}")
+    public String deleteCart(@PathVariable Long id) {
+         fakeStoreCartServices.deleteCart(id);
+        return  "Product deleted successfully with "+ id;
+    }
+
 }
