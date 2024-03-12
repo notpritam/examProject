@@ -19,7 +19,7 @@ public class FakeStoreProductServices implements ProductServices {
 
     @Override
     public Product getProduct(Long id) {
-        return null;
+        return new Product();
     }
 
     @Override
