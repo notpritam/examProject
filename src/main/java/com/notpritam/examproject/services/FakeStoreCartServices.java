@@ -24,17 +24,13 @@ public class FakeStoreCartServices implements  CartServices {
                 }
         ).getBody();
 
-        List<Cart> carts = cartFetchDTOS.stream().map(dto -> {
-            Cart cart = new Cart();
-            cart.setCartId(dto.getId());
-            cart.setUserId(dto.getUserId());
-            cart.setDate(dto.getDate());
-//            cart.setCartProducts(dto.getProducts());
-            return cart;
-        }).collect(Collectors.toList());
+        return cartFetchDTOS.stream().map(this::mapToCart).toList();
 
-        return carts;
+    }
 
+    private Cart mapToCart(CartDTOs recivedCartDTO) {
+
+        return new Cart(recivedCartDTO.getId(), recivedCartDTO.getUserId(), recivedCartDTO.getDate(), recivedCartDTO.getProducts());
     }
 
     @Override
@@ -65,16 +61,7 @@ public class FakeStoreCartServices implements  CartServices {
                 }
         ).getBody();
 
-        List<Cart> carts = cartFetchDTOS.stream().map(dto -> {
-            Cart cart = new Cart();
-            cart.setCartId(dto.getId());
-            cart.setUserId(dto.getUserId());
-            cart.setDate(dto.getDate());
-//            cart.setCartProducts(dto.getProducts());
-            return cart;
-        }).collect(Collectors.toList());
-
-        return carts;
+        return cartFetchDTOS.stream().map(this::mapToCart).toList();
     }
 
     @Override
@@ -88,16 +75,7 @@ public class FakeStoreCartServices implements  CartServices {
                 }
         ).getBody();
 
-        List<Cart> carts = cartFetchDTOS.stream().map(dto -> {
-            Cart cart = new Cart();
-            cart.setCartId(dto.getId());
-            cart.setUserId(dto.getUserId());
-            cart.setDate(dto.getDate());
-//            cart.setCartProducts(dto.getProducts());
-            return cart;
-        }).collect(Collectors.toList());
-
-        return carts;
+        return cartFetchDTOS.stream().map(this::mapToCart).toList();
     }
 
     @Override
@@ -111,16 +89,8 @@ public class FakeStoreCartServices implements  CartServices {
                 }
         ).getBody();
 
-        List<Cart> carts = cartFetchDTOS.stream().map(dto -> {
-            Cart cart = new Cart();
-            cart.setCartId(dto.getId());
-            cart.setUserId(dto.getUserId());
-            cart.setDate(dto.getDate());
-//            cart.setCartProducts(dto.getProducts());
-            return cart;
-        }).collect(Collectors.toList());
 
-        return carts;
+        return cartFetchDTOS.stream().map(this::mapToCart).toList();
     }
 
    @Override
@@ -152,16 +122,8 @@ public class FakeStoreCartServices implements  CartServices {
                 }
         ).getBody();
 
-        List<Cart> carts = cartFetchDTOS.stream().map(dto -> {
-            Cart cart = new Cart();
-            cart.setCartId(dto.getId());
-            cart.setUserId(dto.getUserId());
-            cart.setDate(dto.getDate());
-//            cart.setCartProducts(dto.getProducts());
-            return cart;
-        }).collect(Collectors.toList());
 
-        return carts;
+        return cartFetchDTOS.stream().map(this::mapToCart).toList();
     }
 
 
