@@ -2,10 +2,7 @@ package com.notpritam.examproject.controllers;
 
 import com.notpritam.examproject.models.Cart;
 import com.notpritam.examproject.services.FakeStoreCartServices;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,14 +11,25 @@ import java.util.List;
 public class CartControllers {
 
     FakeStoreCartServices fakeStoreCartServices = new FakeStoreCartServices();
+
+
+    // Get Limited Cart Items
     @GetMapping("")
-    public List<Cart> getAllCart() {
-        return fakeStoreCartServices.getAllCarts();
+    public List<Cart> getLimitCart(@RequestParam("limit") Long limit) {
+        return fakeStoreCartServices.getLimitCart(limit);
+    }
+    @GetMapping("/")
+    public String getAllCart(@RequestParam("limit") Long limit) {
+        return "Hello";
     }
 
+    // Get Cart By Id
     @GetMapping("/{id}")
     public Cart getCart(@PathVariable Long id) {
 
         return fakeStoreCartServices.getCart(id);
     }
+
+
+
 }

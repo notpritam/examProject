@@ -8,6 +8,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FakeStoreCartServices implements  CartServices {
     private final String url = "https://fakestoreapi.com/carts";
@@ -40,9 +41,28 @@ public class FakeStoreCartServices implements  CartServices {
         return cart;
     }
 
+
     @Override
-    public Cart getLimitCart(Long limit) {
-        return null;
+    public List<Cart> getLimitCart(Long limit) {
+
+        List<CartDTOs> cartFetchDTOS = restTemplate.exchange(
+                url + "?limit=" + limit,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<CartDTOs>>() {
+                }
+        ).getBody();
+
+        List<Cart> carts = cartFetchDTOS.stream().map(dto -> {
+            Cart cart = new Cart();
+            cart.setCartId(dto.getId());
+            cart.setUserId(dto.getUserId());
+            cart.setDate(dto.getDate());
+//            cart.setCartProducts(dto.getProducts());
+            return cart;
+        }).collect(Collectors.toList());
+
+        return carts;
     }
 
     @Override

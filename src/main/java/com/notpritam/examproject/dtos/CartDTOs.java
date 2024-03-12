@@ -39,8 +39,8 @@ public class CartDTOs {
         this.date = date;
     }
 
-//    public CartProduct[] getProducts() {
-//        return products;
-//    }
+    public CartProduct[] getProducts() {
+        return products;
+    }
 
 }
