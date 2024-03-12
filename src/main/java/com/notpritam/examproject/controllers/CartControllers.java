@@ -55,7 +55,7 @@ public class CartControllers {
 
     // Add a new Product in Cart
     @PostMapping(
-            value = "/createPerson", consumes = "application/json", produces = "application/json")
+            value = "", consumes = "application/json", produces = "application/json")
     public Cart createPerson(@RequestBody Cart cart) {
         return fakeStoreCartServices.addNewCartProduct(cart);
     }
