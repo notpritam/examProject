@@ -9,9 +9,9 @@ public interface CartServices {
     public List<Cart> getAllCarts();
     public Cart getCart(Long id);
     public List<Cart> getLimitCart(Long limit);
-    public Cart getCartInDateRange(String startDate , String endDate);
-    public void getUserCarts(Long userId);
-    public List<Cart> addNewCart(String categoryName);
+    public List<Cart> getCartInDateRange(String startDate , String endDate);
+    public List<Cart> getUserCarts(Long userId);
+    public Cart addNewCartProduct(Cart cart);
     public List<Cart> updateAProduct(Long productId);
     public List<Cart> deleteCart(Long cartId);
     public List<Cart> getSortedProducts(String sort);

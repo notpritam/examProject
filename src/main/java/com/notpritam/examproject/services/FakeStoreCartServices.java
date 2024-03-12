@@ -78,17 +78,54 @@ public class FakeStoreCartServices implements  CartServices {
     }
 
     @Override
-    public Cart getCartInDateRange(String startDate, String endDate) {
-        return null;
+    public List<Cart> getCartInDateRange(String startDate, String endDate) {
+
+        List<CartDTOs> cartFetchDTOS = restTemplate.exchange(
+                url + "?startDate=" + startDate + "&endDate=" + endDate,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<CartDTOs>>() {
+                }
+        ).getBody();
+
+        List<Cart> carts = cartFetchDTOS.stream().map(dto -> {
+            Cart cart = new Cart();
+            cart.setCartId(dto.getId());
+            cart.setUserId(dto.getUserId());
+            cart.setDate(dto.getDate());
+//            cart.setCartProducts(dto.getProducts());
+            return cart;
+        }).collect(Collectors.toList());
+
+        return carts;
     }
 
     @Override
-    public void getUserCarts(Long userId) {
+    public List<Cart> getUserCarts(Long userId) {
 
+        List<CartDTOs> cartFetchDTOS = restTemplate.exchange(
+                url + "/user/" + userId,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<CartDTOs>>() {
+                }
+        ).getBody();
+
+        List<Cart> carts = cartFetchDTOS.stream().map(dto -> {
+            Cart cart = new Cart();
+            cart.setCartId(dto.getId());
+            cart.setUserId(dto.getUserId());
+            cart.setDate(dto.getDate());
+//            cart.setCartProducts(dto.getProducts());
+            return cart;
+        }).collect(Collectors.toList());
+
+        return carts;
     }
 
-    @Override
-    public List<Cart> addNewCart(String categoryName) {
+   @Override
+    public Cart addNewCartProduct(Cart cart) {
+
         return null;
     }
 
@@ -104,19 +141,25 @@ public class FakeStoreCartServices implements  CartServices {
 
     @Override
     public List<Cart> getSortedProducts(String sort) {
-        return null;
-    }
+        List<CartDTOs> cartFetchDTOS = restTemplate.exchange(
+                url + "?sort=" + sort,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<CartDTOs>>() {
+                }
+        ).getBody();
 
-//    private  Cart mapToProduct(CartDTOs cartDTOs) {
-//        CartProduct category = new CartProduct(1L, cartDTOs.getProducts());
-//
-//        return new Cart(
-//                cartDTOs.getId(),
-//                cartDTOs.getProductId(),
-//                cartDTOs.getQuantity(),
-//                cartDTOs.getUserId()
-//        );
-//    }
+        List<Cart> carts = cartFetchDTOS.stream().map(dto -> {
+            Cart cart = new Cart();
+            cart.setCartId(dto.getId());
+            cart.setUserId(dto.getUserId());
+            cart.setDate(dto.getDate());
+//            cart.setCartProducts(dto.getProducts());
+            return cart;
+        }).collect(Collectors.toList());
+
+        return carts;
+    }
 
 
 }
