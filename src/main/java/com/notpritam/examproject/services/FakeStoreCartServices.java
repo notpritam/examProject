@@ -110,8 +110,11 @@ public class FakeStoreCartServices implements  CartServices {
     }
 
     @Override
-    public Cart updateAProduct(Long productId) {
-        return null;
+    public String updateAProduct(Cart cart) {
+        CartDTOs sendCart = mapToCardDTOs(cart);
+        restTemplate.put(url + "/" + cart.getCartId(), sendCart, CartDTOs.class);
+
+        return  "Updated Successfully!";
     }
 
     @Override

@@ -12,7 +12,7 @@ public interface CartServices {
     public List<Cart> getCartInDateRange(String startDate , String endDate);
     public List<Cart> getUserCarts(Long userId);
     public Cart addNewCartProduct(Cart cart);
-    public Cart updateAProduct(Long productId);
+    public String updateAProduct(Cart cart);
     public Cart deleteCart(Long cartId);
     public List<Cart> getSortedProducts(String sort);
 }
