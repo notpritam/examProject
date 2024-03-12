@@ -18,9 +18,9 @@ public class CartControllers {
     public List<Cart> getLimitCart(@RequestParam("limit") Long limit) {
         return fakeStoreCartServices.getLimitCart(limit);
     }
-    @GetMapping("/")
-    public String getAllCart(@RequestParam("limit") Long limit) {
-        return "Hello";
+    @GetMapping("/all")
+    public List<Cart> getAllCart() {
+        return fakeStoreCartServices.getAllCarts();
     }
 
     // Get Cart By Id

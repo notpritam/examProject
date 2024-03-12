@@ -16,12 +16,24 @@ public class FakeStoreCartServices implements  CartServices {
     @Override
     public List<Cart> getAllCarts() {
 
-//        List<CartDTOs> cartFetchDTOS = restTemplate.getForObject(url, CartDTOs,   {
-//        });
-//
-//        return cartFetchDTOS.stream().map(this::mapToProduct).toList();
+        List<CartDTOs> cartFetchDTOS = restTemplate.exchange(
+                url ,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<CartDTOs>>() {
+                }
+        ).getBody();
 
-        return  null;
+        List<Cart> carts = cartFetchDTOS.stream().map(dto -> {
+            Cart cart = new Cart();
+            cart.setCartId(dto.getId());
+            cart.setUserId(dto.getUserId());
+            cart.setDate(dto.getDate());
+//            cart.setCartProducts(dto.getProducts());
+            return cart;
+        }).collect(Collectors.toList());
+
+        return carts;
 
     }
 
@@ -37,7 +49,7 @@ public class FakeStoreCartServices implements  CartServices {
         cart.setCartId(fakeStoreProductDto.getId());
         cart.setUserId(fakeStoreProductDto.getUserId());
         cart.setDate(fakeStoreProductDto.getDate());
-//        cart.setCartProducts(fakeStoreProductDto.getProducts());
+        cart.setCartProducts(fakeStoreProductDto.getProducts());
         return cart;
     }
 
