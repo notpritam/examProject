@@ -29,10 +29,7 @@ public class FakeStoreCartServices implements  CartServices {
 
     }
 
-    private Cart mapToCart(CartDTOs recivedCartDTO) {
 
-        return new Cart(recivedCartDTO.getId(), recivedCartDTO.getUserId(), recivedCartDTO.getDate(), recivedCartDTO.getProducts());
-    }
 
     @Override
     public Cart getCart(Long id) {
@@ -106,6 +103,7 @@ public class FakeStoreCartServices implements  CartServices {
 
     }
 
+    // Helper Functions
     private CartDTOs mapToCardDTOs(Cart cart) {
 
         return new CartDTOs(cart.getCartId(), cart.getUserId(), cart.getDate(), cart.getCartProducts());
@@ -118,6 +116,11 @@ public class FakeStoreCartServices implements  CartServices {
         restTemplate.put(url + "/" + cart.getCartId(), sendCart, CartDTOs.class);
 
         return  "Updated Successfully!";
+    }
+
+    private Cart mapToCart(CartDTOs recivedCartDTO) {
+
+        return new Cart(recivedCartDTO.getId(), recivedCartDTO.getUserId(), recivedCartDTO.getDate(), recivedCartDTO.getProducts());
     }
 
     @Override
